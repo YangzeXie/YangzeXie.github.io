@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99/" />
+  
+  <link rel="canonical" href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Go学习笔记 闭包 | XieYangze&#39;s Blog
+       
+  </title>
+  <meta name="title" content="Go学习笔记 闭包 | XieYangze&#39;s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go学习笔记 闭包"/>
+<meta name="twitter:description" content="《Go语言编程》中解释闭包： 闭包的概念：是可以包含自由（未绑定到特定对象）变量的代码块，这些变量不在这个代码块内或者任何全局上下文中定义，而是在定义代码块的环境中定义。要执行的代码块（由于自由变量包含在代码块中，所以这些自由变量以及它们引用的对象没有被释放）为自由变量提供绑定的计算环境（作用域）。
+闭包的价值 : 闭包的价值在于可以作为函数对象或者匿名函数，对于类型系统而言，这意味着不仅要表示数据还要表示代码。支持闭包的多数语言都将函数作为第一级对象，就是说这些函数可以存储到变量中作为参数传递给其他函数，最重要的是能够被函数动态创建和返回。
+Go语言中的闭包同样也会引用到函数外的变量。闭包的实现确保只要闭包还被使用，那么被闭包引用的变量会一直存在。
+通俗的讲，闭包就是能读取其他函数内部变量的一种函数，是将函数内部和函数外部连接起来的桥梁。
+闭包会始终保存在内存之中，其父函数调用结束之后不会被垃圾回收机制（GC）自动销毁，成为一个全局变量。
+使用闭包应注意： 1.由于闭包会将函数中的变量都保存在内存之中，因此使用闭包的内存开销非常大，不能滥用闭包。 2.闭包会在父函数的外部改变父函数内部的变量值，应该注意使用的安全性。
+下面通过斐波那契数列的代码来使用闭包功能：
+package main import &quot;fmt&quot; // 返回一个“返回int的函数” func fibonacci() func() int { back1, back2 := 0, 1 return func() int { temp := back1 back1, back2 = back2, (back1 &#43; back2) return temp } } func main() { f := fibonacci() for i := 0; i &lt; 10; i&#43;&#43; { fmt.Println(f()) } }  "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Go学习笔记 闭包",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/xieyangze.cn\/2019\/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/xieyangze.cn\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "Go学习笔记",
+  "wordcount":  64 ,
+  "url": "https:\/\/xieyangze.cn\/2019\/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85\/",
+  "datePublished": "2019-11-17T16:58:19\x2b08:00",
+  "dateModified": "2019-11-17T16:58:19\x2b08:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "YangzeXie",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/xieyangze.cn\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "YangzeXie"
+  },
+  "description": ""
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://xieyangze.cn/">XieYangze&#39;s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://xieyangze.cn/">XieYangze&#39;s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Go学习笔记 闭包</h1>
+        <div class="post-meta">
+            Written by <a href="https://xieyangze.cn/" rel="author">YangzeXie</a> with ♥ 
+                <span class="post-time">
+                    on <time datetime=2019-11-17 >17 November 2019</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>《Go语言编程》中解释闭包：
+闭包的概念：是可以包含自由（未绑定到特定对象）变量的代码块，这些变量不在这个代码块内或者任何全局上下文中定义，而是在定义代码块的环境中定义。要执行的代码块（由于自由变量包含在代码块中，所以这些自由变量以及它们引用的对象没有被释放）为自由变量提供绑定的计算环境（作用域）。</p>
+
+<p>闭包的价值 : 闭包的价值在于可以作为函数对象或者匿名函数，对于类型系统而言，这意味着不仅要表示数据还要表示代码。支持闭包的多数语言都将函数作为第一级对象，就是说这些函数可以存储到变量中作为参数传递给其他函数，最重要的是能够被函数动态创建和返回。</p>
+
+<p>Go语言中的闭包同样也会引用到函数外的变量。闭包的实现确保只要闭包还被使用，那么被闭包引用的变量会一直存在。</p>
+
+<p>通俗的讲，闭包就是能读取其他函数内部变量的一种函数，是将函数内部和函数外部连接起来的桥梁。</p>
+
+<p>闭包会始终保存在内存之中，其父函数调用结束之后不会被垃圾回收机制（GC）自动销毁，成为一个全局变量。</p>
+
+<p>使用闭包应注意：
+    1.由于闭包会将函数中的变量都保存在内存之中，因此使用闭包的内存开销非常大，不能滥用闭包。
+    2.闭包会在父函数的外部改变父函数内部的变量值，应该注意使用的安全性。</p>
+
+<p>下面通过斐波那契数列的代码来使用闭包功能：</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+// 返回一个“返回int的函数”
+func fibonacci() func() int {
+	back1, back2 := 0, 1
+	return func() int {
+		temp := back1
+		back1, back2 = back2, (back1 + back2)
+		return temp
+	}
+}
+
+func main() {
+	f := fibonacci()
+	for i := 0; i &lt; 10; i++ {
+		fmt.Println(f())
+	}
+}
+</code></pre>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>YangzeXie </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>Words:</span>
+                   <span>64</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>Share:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E9%2597%25AD%25E5%258C%2585%2f&amp;text=Go%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%20%e9%97%ad%e5%8c%85&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E9%2597%25AD%25E5%258C%2585%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E9%2597%25AD%25E5%258C%2585%2f&amp;title=Go%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%20%e9%97%ad%e5%8c%85" target="_blank" title="Share on LinkedIn">
+          <i class="iconfont icon-linkedin"></i>
+        </a>
+        
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>Tag: 
+            
+            <span class="tag"><a href="https://xieyangze.cn/tags/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                    #Go学习笔记</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">Back</a></span> · 
+                <span><a href="https://xieyangze.cn/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99/" class="prev" rel="prev" title="Go学习笔记 包内名称首字母大小写"><i class="iconfont icon-dajiantou"></i>&nbsp;Go学习笔记 包内名称首字母大小写</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+          <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+          var gitalk = new Gitalk({
+              id: '2019-11-17 16:58:19 \x2b0800 \x2b0800',
+              title: 'Go学习笔记 闭包',
+              clientID: '470e07c5e03c28800381',
+              clientSecret: 'f8f78366f45b51cee3d95b0488fb9bb350ddc466',
+              repo: 'YangzeXie.github.io',
+              owner: 'YangzeXie',
+              admin: ['YangzeXie'],
+              body: decodeURI(location.href)
+          });
+          gitalk.render('gitalk-container');
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+ 
+
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2019</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://xieyangze.cn/">YangzeXie</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>

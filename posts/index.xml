@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on XieYangze&#39;s Blog</title>
+    <link>https://xieyangze.cn/posts/</link>
+    <description>Recent content in Posts on XieYangze&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Nov 2019 16:58:19 +0800</lastBuildDate>
+    
+	<atom:link href="https://xieyangze.cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go学习笔记 闭包</title>
+      <link>https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85/</link>
+      <pubDate>Sun, 17 Nov 2019 16:58:19 +0800</pubDate>
+      
+      <guid>https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85/</guid>
+      <description>《Go语言编程》中解释闭包： 闭包的概念：是可以包含自由（未绑定到特定对象）变量的代码块，这些变量不在这个代码块内或者任何全局上下文中定义，而是在定义代码块的环境中定义。要执行的代码块（由于自由变量包含在代码块中，所以这些自由变量以及它们引用的对象没有被释放）为自由变量提供绑定的计算环境（作用域）。
+闭包的价值 : 闭包的价值在于可以作为函数对象或者匿名函数，对于类型系统而言，这意味着不仅要表示数据还要表示代码。支持闭包的多数语言都将函数作为第一级对象，就是说这些函数可以存储到变量中作为参数传递给其他函数，最重要的是能够被函数动态创建和返回。
+Go语言中的闭包同样也会引用到函数外的变量。闭包的实现确保只要闭包还被使用，那么被闭包引用的变量会一直存在。
+通俗的讲，闭包就是能读取其他函数内部变量的一种函数，是将函数内部和函数外部连接起来的桥梁。
+闭包会始终保存在内存之中，其父函数调用结束之后不会被垃圾回收机制（GC）自动销毁，成为一个全局变量。
+使用闭包应注意： 1.由于闭包会将函数中的变量都保存在内存之中，因此使用闭包的内存开销非常大，不能滥用闭包。 2.闭包会在父函数的外部改变父函数内部的变量值，应该注意使用的安全性。
+下面通过斐波那契数列的代码来使用闭包功能：
+package main import &amp;quot;fmt&amp;quot; // 返回一个“返回int的函数” func fibonacci() func() int { back1, back2 := 0, 1 return func() int { temp := back1 back1, back2 = back2, (back1 + back2) return temp } } func main() { f := fibonacci() for i := 0; i &amp;lt; 10; i++ { fmt.Println(f()) } }  </description>
+    </item>
+    
+    <item>
+      <title>Go学习笔记 包内名称首字母大小写</title>
+      <link>https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99/</link>
+      <pubDate>Sun, 17 Nov 2019 14:47:00 +0800</pubDate>
+      
+      <guid>https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99/</guid>
+      <description>Go语言的包内函数首字母有大小写的区别，如果一个函数名字以大写字母开头，那么它就是已导出的，如果一个函数名字以小写字母开头，它就是未导出的，所谓已导出与未导出的区别在于该函数是否可以在这个包外进行调用，下面通过代码进行对比。
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main() { fmt.Println(math.Pi) //math.Pi为已导出的，可在包外进行调用，math.pi为未导出的，只能在包内部进行调用 }  </description>
+    </item>
+    
+    <item>
+      <title>TestArticle</title>
+      <link>https://xieyangze.cn/2019/testarticle/</link>
+      <pubDate>Wed, 13 Nov 2019 21:00:56 +0800</pubDate>
+      
+      <guid>https://xieyangze.cn/2019/testarticle/</guid>
+      <description>This is a test article. 2019-11-13</description>
+    </item>
+    
+    <item>
+      <title>MarkDown语法测试</title>
+      <link>https://xieyangze.cn/2019/markdown%E8%AF%AD%E6%B3%95%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 12 Nov 2019 21:40:47 +0800</pubDate>
+      
+      <guid>https://xieyangze.cn/2019/markdown%E8%AF%AD%E6%B3%95%E6%B5%8B%E8%AF%95/</guid>
+      <description>This is My First Markdown article 1. Title test first level second level third level forth level fifth level sixth level 2. List test  1  1.1 1.2  2  2.1 2.2    list 1.1  list 1.1.1 list 1.1.2 list 1.2.1 list 1.2.2  list 2.1  list 2.1.1 list 2.1.2 list 2.2.1 list 2.2.2   3. Quote test  first level &amp;gt; second level &amp;gt;&amp;gt; third level &amp;gt;&amp;gt;&amp;gt; forth level &amp;gt;&amp;gt;&amp;gt;&amp;gt; fifth level &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; sixth level</description>
+    </item>
+    
+  </channel>
+</rss>

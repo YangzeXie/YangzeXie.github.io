@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on XieYangze&#39;s Blog</title>
+    <link>https://xieyangze.cn/categories/test/</link>
+    <description>Recent content in test on XieYangze&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 13 Nov 2019 21:00:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://xieyangze.cn/categories/test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TestArticle</title>
+      <link>https://xieyangze.cn/2019/testarticle/</link>
+      <pubDate>Wed, 13 Nov 2019 21:00:56 +0800</pubDate>
+      
+      <guid>https://xieyangze.cn/2019/testarticle/</guid>
+      <description>This is a test article. 2019-11-13</description>
+    </item>
+    
+  </channel>
+</rss>

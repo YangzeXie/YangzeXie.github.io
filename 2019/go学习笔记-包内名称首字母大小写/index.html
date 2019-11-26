@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://xieyangze.cn/2019/testarticle/" />
+  <link rel="next" href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85/" />
+  <link rel="canonical" href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Go学习笔记 包内名称首字母大小写 | XieYangze&#39;s Blog
+       
+  </title>
+  <meta name="title" content="Go学习笔记 包内名称首字母大小写 | XieYangze&#39;s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go学习笔记 包内名称首字母大小写"/>
+<meta name="twitter:description" content="Go语言的包内函数首字母有大小写的区别，如果一个函数名字以大写字母开头，那么它就是已导出的，如果一个函数名字以小写字母开头，它就是未导出的，所谓已导出与未导出的区别在于该函数是否可以在这个包外进行调用，下面通过代码进行对比。
+package main import ( &quot;fmt&quot; &quot;math&quot; ) func main() { fmt.Println(math.Pi) //math.Pi为已导出的，可在包外进行调用，math.pi为未导出的，只能在包内部进行调用 }  "/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Go学习笔记 包内名称首字母大小写",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/xieyangze.cn\/2019\/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/xieyangze.cn\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "posts",
+  "keywords": "Go学习笔记",
+  "wordcount":  14 ,
+  "url": "https:\/\/xieyangze.cn\/2019\/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8C%85%E5%86%85%E5%90%8D%E7%A7%B0%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99\/",
+  "datePublished": "2019-11-17T14:47:00\x2b08:00",
+  "dateModified": "2019-11-17T14:47:00\x2b08:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "YangzeXie",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/xieyangze.cn\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "YangzeXie"
+  },
+  "description": ""
+}
+</script>
+</head>
+
+  
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://xieyangze.cn/">XieYangze&#39;s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://xieyangze.cn/">XieYangze&#39;s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Go学习笔记 包内名称首字母大小写</h1>
+        <div class="post-meta">
+            Written by <a href="https://xieyangze.cn/" rel="author">YangzeXie</a> with ♥ 
+                <span class="post-time">
+                    on <time datetime=2019-11-17 >17 November 2019</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-timer"></i>
+                1 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>Go语言的包内函数首字母有大小写的区别，如果一个函数名字以大写字母开头，那么它就是已导出的，如果一个函数名字以小写字母开头，它就是未导出的，所谓已导出与未导出的区别在于该函数是否可以在这个包外进行调用，下面通过代码进行对比。</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+)
+
+func main() {
+	fmt.Println(math.Pi) //math.Pi为已导出的，可在包外进行调用，math.pi为未导出的，只能在包内部进行调用
+}
+</code></pre>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>YangzeXie </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>Words:</span>
+                   <span>14</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>Share:</span>
+                <span>
+
+      
+        <a href="//twitter.com/share?url=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%258C%2585%25E5%2586%2585%25E5%2590%258D%25E7%25A7%25B0%25E9%25A6%2596%25E5%25AD%2597%25E6%25AF%258D%25E5%25A4%25A7%25E5%25B0%258F%25E5%2586%2599%2f&amp;text=Go%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%20%e5%8c%85%e5%86%85%e5%90%8d%e7%a7%b0%e9%a6%96%e5%ad%97%e6%af%8d%e5%a4%a7%e5%b0%8f%e5%86%99&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="iconfont icon-twitter"></i>
+        </a>
+        
+      
+      
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%258C%2585%25E5%2586%2585%25E5%2590%258D%25E7%25A7%25B0%25E9%25A6%2596%25E5%25AD%2597%25E6%25AF%258D%25E5%25A4%25A7%25E5%25B0%258F%25E5%2586%2599%2f" target="_blank" title="Share on Facebook">
+          <i class="iconfont icon-facebook"></i>
+        </a>
+        
+      
+      
+      
+      
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fxieyangze.cn%2f2019%2fgo%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-%25E5%258C%2585%25E5%2586%2585%25E5%2590%258D%25E7%25A7%25B0%25E9%25A6%2596%25E5%25AD%2597%25E6%25AF%258D%25E5%25A4%25A7%25E5%25B0%258F%25E5%2586%2599%2f&amp;title=Go%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%20%e5%8c%85%e5%86%85%e5%90%8d%e7%a7%b0%e9%a6%96%e5%ad%97%e6%af%8d%e5%a4%a7%e5%b0%8f%e5%86%99" target="_blank" title="Share on LinkedIn">
+          <i class="iconfont icon-linkedin"></i>
+        </a>
+        
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>Tag: 
+            
+            <span class="tag"><a href="https://xieyangze.cn/tags/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                    #Go学习笔记</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">Back</a></span> · 
+                <span><a href="https://xieyangze.cn/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://xieyangze.cn/2019/testarticle/" class="prev" rel="prev" title="TestArticle"><i class="iconfont icon-dajiantou"></i>&nbsp;TestArticle</a>
+         
+        
+        <a href="https://xieyangze.cn/2019/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%97%AD%E5%8C%85/" class="next" rel="next" title="Go学习笔记 闭包">Go学习笔记 闭包&nbsp;<i class="iconfont icon-xiaojiantou"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+          <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+          var gitalk = new Gitalk({
+              id: '2019-11-17 14:47:00 \x2b0800 \x2b0800',
+              title: 'Go学习笔记 包内名称首字母大小写',
+              clientID: '470e07c5e03c28800381',
+              clientSecret: 'f8f78366f45b51cee3d95b0488fb9bb350ddc466',
+              repo: 'YangzeXie.github.io',
+              owner: 'YangzeXie',
+              admin: ['YangzeXie'],
+              body: decodeURI(location.href)
+          });
+          gitalk.render('gitalk-container');
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+ 
+
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2012 - 2019</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://xieyangze.cn/">YangzeXie</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>
